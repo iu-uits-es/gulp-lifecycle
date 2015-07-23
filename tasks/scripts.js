@@ -1,20 +1,14 @@
 var gulp = require('gulp'),
-    browserify = require('browserify'),
-    transform = require('vinyl-transform'),
-    babelify = require('babelify'),
-    $ = require('gulp-load-plugins')();
+    $ = require('gulp-load-plugins')(),
+    utils = require('../utils'),
+    config = global.config.scripts;
 
 gulp.task('scripts', ['clean-scripts'], function() {
-    //// vinyl-transform https://medium.com/@sogko/gulp-browserify-the-gulp-y-way-bb359b3f9623
-    var browserified = transform(function(filename) {
-        var browsifyInstance = browserify(config.src);
-        browsifyInstance.transform(babelify.configure({ignore: 'node_modules'}))
-        return browsifyInstance.bundle();
-    });
+    var src = utils.findSourceDirectories(config.entryPoint, config.srcdir);
 
-    return gulp.src(config.src)
-        .pipe(browserified)
-        .pipe($.rename(config.outputName))
+    return gulp.src(src, { base: process.cwd() })
+        .pipe(utils.browserify)
+        .pipe(utils.moduleAwareRename(config.srcroot, config.outputName))
         .pipe($.sourcemaps.init({loadMaps: true})) // loads map from browserify file;
         .pipe($.uglify({ mangle: false }))
         .pipe($.sourcemaps.write('./')) // writes .map file

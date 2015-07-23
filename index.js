@@ -1,8 +1,8 @@
 var gulp = require('gulp'),
-    objectAssign = require('object-assign');
+    deepMerge = require('deepmerge');
 
-module.exports = function(gulp, config){
-    var config = objectAssign(require('./config.js'), config);
+module.exports = function(gulp, config) {
+    global.config = deepMerge(require('./config.js'), config || {});
 
     require('require-dir')('./tasks', {
         recurse: true

@@ -1,4 +1,5 @@
-var srcroot = './src/main/js',
+var jasmineReporters = require('jasmine-reporters'),
+    srcroot = './src/main/js',
     srcdest = './target/classes/static/js/build',
 
     testroot = './src/test/js',
@@ -9,31 +10,47 @@ var srcroot = './src/main/js',
 
 module.exports = {
     scripts: {
-        watch: srcroot+'/**/*.js',
-        src: srcroot+'/index.js',
-        dest: srcdest,
-        outputName: 'scripts.js'
+        entryPoint: 'index.js',     // Entry point file name for browserify
+        srcdir: srcroot,            // Root directory of sources
+        watch: srcroot+'/**/*.js',  // Source globs to watch
+        dest: srcdest,              // Output directory of transpiled code
+        outputName: 'scripts'       // Base name of output file for transpiled code
+    },
+    spec: {
+        entryPoint: 'spec.js',
+        srcdir: testroot,
+        watch: testroot+'/**/*.js',
+        dest: testdest,
+        outputName: 'spec-tests.js',
+        jasmineConfig: {
+            reporters: [
+                new jasmineReporters.JUnitXmlReporter({
+                    savePath: './target',
+                    filePrefix: 'js-spec-junitresults-',
+                    consolidateAll: true
+                })
+            ]
+        }
+    },
+    it: {
+        entryPoint: 'it.js',
+        srcdir: itroot,
+        watch: itroot + '/**/*.js',
+        dest: itdest,
+        outputName: 'spec-it.js',
+        jasmineConfig: {
+            reporters: [
+                new jasmineReporters.JUnitXmlReporter({
+                    savePath: './target',
+                    filePrefix: 'js-it-junitresults-',
+                    consolidateAll: true
+                })
+            ],
+            integration: true
+        }
     },
     clean: {
         scripts: srcdest,
         spec: testdest
-    },
-    spec: {
-        watch: testroot+'/**/*.js',
-        src: testroot+'/spec.js',
-        dest: testdest,
-        reporter: {
-            verbosity: 3
-        },
-        outputName: 'spec-tests.js'
-    },
-    it: {
-        watch: itroot+'/**/*.js',
-        src: itroot+'/it.js',
-        dest: itdest,
-        reporter: {
-            verbosity: 3
-        },
-        outputName: 'spec-it.js'
     }
 };
