@@ -6,7 +6,10 @@ var jasmineReporters = require('jasmine-reporters'),
     testdest = './target/test-classes/static/js/build',
 
     itroot = './src/it/js',
-    itdest = testdest;
+    itdest = testdest,
+
+    lessroot = './src/main/less',
+    lessdest = './target/classes/static/css/build'
 
 module.exports = {
     scripts: {
@@ -14,7 +17,7 @@ module.exports = {
         srcdir: srcroot,            // Root directory of sources
         watch: srcroot+'/**/*.js',  // Source globs to watch
         dest: srcdest,              // Output directory of transpiled code
-        outputName: 'scripts'       // Base name of output file for transpiled code
+        outputName: 'scripts.js'       // Base name of output file for transpiled code
     },
     spec: {
         entryPoint: 'spec.js',
@@ -51,6 +54,14 @@ module.exports = {
     },
     clean: {
         scripts: srcdest,
-        spec: testdest
-    }
+        spec: testdest,
+        less: lessdest
+    },
+    less: {
+        entryPoint: 'styles.less',     
+        srcdir: lessroot,            
+        watch: lessroot+'/**/*.less',  
+        dest: lessdest,              
+        outputName: 'styles.css'       
+    },
 };

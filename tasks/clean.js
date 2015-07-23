@@ -10,3 +10,7 @@ gulp.task('clean-scripts', function(cb) {
 gulp.task('clean-test', function(cb) {
     del(config.spec, cb);
 });
+
+gulp.task('clean-less', function(cb) {
+    del(config.less, cb);
+});
