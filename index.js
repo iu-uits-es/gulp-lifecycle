@@ -1,7 +1,8 @@
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    objectAssign = require('object-assign');
 
 module.exports = function(gulp, config){
-    var config = Object.assign(require('./config.js'), config);
+    var config = objectAssign(require('./config.js'), config);
 
     require('require-dir')('./tasks', {
         recurse: true
