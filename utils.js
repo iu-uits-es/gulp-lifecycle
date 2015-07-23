@@ -33,12 +33,16 @@ module.exports = {
 	moduleAwareRename: function(sourceRoot, outputName) {
 		return rename(function(filePath) {
         	var basename = path.basename(filePath.dirname);
+        	console.log(basename, path.basename(sourceRoot));
         	if(basename === path.basename(sourceRoot)) {
             	filePath.dirname = '.';
         	} else {
             	filePath.dirname = basename;
         	}
-        	filePath.basename = outputName;
+        	var parts = outputName.split('.');
+        	filePath.basename = parts[0];
+        	filePath.extname = '.' + parts[1];
+
     	});
 	}
 };

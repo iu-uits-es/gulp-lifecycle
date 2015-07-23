@@ -8,7 +8,7 @@ gulp.task('it', ['clean-test'], function() {
 
     return gulp.src(src, { base: process.cwd() })
         .pipe(utils.browserify)
-        .pipe(utils.moduleAwareRename(config.srcroot, config.outputName))
+        .pipe(utils.moduleAwareRename(config.srcdir, config.outputName))
         .pipe(gulp.dest(config.dest))
         .pipe(jasmine(config.jasmineConfig));
 });
