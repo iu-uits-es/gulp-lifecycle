@@ -33,7 +33,6 @@ module.exports = {
 	moduleAwareRename: function(sourceRoot, outputName) {
 		return rename(function(filePath) {
         	var basename = path.basename(filePath.dirname);
-        	console.log(basename, path.basename(sourceRoot));
         	if(basename === path.basename(sourceRoot)) {
             	filePath.dirname = '.';
         	} else {
