@@ -25,23 +25,15 @@ function createLintTask(taskName, files) {
 
 
 var types = ['scripts', 'spec', 'it'];
+var all = [];
 for (var i = 0; i < types.length; i++) {
-	var type = types[i];
-	var src = utils.findSourceDirectories(config[type].entryPoint, config[type].srcdir);
+	var type = types[i],
+		src = utils.findSourceDirectories(config[type].entryPoint, config[type].srcdir)
+		taskname = 'lint-'+type;
 	console.log(src);
-	createLintTask('lint-'+type, src);	
+
+	createLintTask(taskname, src);
+	all.push(taskname)
 }
-
-
-// Lint our source code
-// var src = utils.findSourceDirectories(config.scripts.entryPoint, config.srcdir);
-// createLintTask('lint-src', src);
-
-// Lint our test code
-//createLintTask('lint-spec', [config.spec.src]);
-
-// Lint our test code
-//createLintTask('lint-it', [config.it.src]);
-
-//gulp.task('lint', ['lint-src', 'lint-spec', 'lint-it']);
-gulp.task('lint', ['lint-src']);
+//// lint all
+gulp.task('lint', all);
