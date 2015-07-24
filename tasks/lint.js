@@ -24,10 +24,13 @@ function createLintTask(taskName, files) {
 
 
 var types = ['scripts', 'spec', 'it'];
+var all = [];
 for (var i = 0; i < types.length; i++) {
-	var type = types[i];
-	var src = utils.findSourceDirectories(config[type].entryPoint, config[type].srcdir);
-	createLintTask('lint-' + type, src);
+	var type = types[i],
+		src = utils.findSourceDirectories(config[type].entryPoint, config[type].srcdir)
+		taskname = 'lint-'+type;
+	createLintTask(taskname, src);
+	all.push(taskname)
 }
-
-gulp.task('lint', ['lint-scripts', 'lint-spec', 'lint-it']);
+//// lint all
+gulp.task('lint', all);
