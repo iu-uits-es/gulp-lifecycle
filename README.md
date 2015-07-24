@@ -4,7 +4,7 @@
 
  This project is intended to get IU ESI frontend applications ready for development as quickly as possible.
 
- ## Installation
+## Installation
 
 1. Create a `gulpfile.js` in your project root
   * If you are using a multi-module project, the "project root" will refer to the root of the web module.
