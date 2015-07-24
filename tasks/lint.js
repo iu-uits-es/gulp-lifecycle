@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     utils = require('../utils'),
     config = global.config;
 
-
 // Send a notification when JSRC fails,
 // so that you know your changes didn't build
 function jscsNotify(file) {
@@ -30,7 +29,6 @@ for (var i = 0; i < types.length; i++) {
 	var type = types[i],
 		src = utils.findSourceDirectories(config[type].entryPoint, config[type].srcdir)
 		taskname = 'lint-'+type;
-	console.log(src);
 
 	createLintTask(taskname, src);
 	all.push(taskname)
