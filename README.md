@@ -19,11 +19,13 @@ If you want to configure how tasks are run, configuration options (as seen in co
 
 For example, if you want to change the output name of your processed javascript, you would make the following modification:
 
-```require(gulp-lifecycle)(
-    scripts: {
-      outputName: 'myCustomScriptName.js'
-    }
-);```
+```
+require(gulp-lifecycle)(
+ scripts: {
+   outputName: 'myCustomScriptName.js'
+ }
+);
+```
 
 ## Tasks
 
