@@ -32,13 +32,13 @@ require(gulp-lifecycle)(
 The following tasks are exported by this project (all directories and filenames given are default settings):
 
 * scripts
-** This task will Browserify and uglify your scripts, outputting everything in `.src/main/js/**/*.js` to a single file: `./target/classes/static/js/build/scripts.js`. Additionally, it will create a map for this destination file to your sources for easier debugging.
+  * This task will Browserify and uglify your scripts, outputting everything in `.src/main/js/**/*.js` to a single file: `./target/classes/static/js/build/scripts.js`. Additionally, it will create a map for this destination file to your sources for easier debugging.
 * spec
-** This task will run Jasmine tests located in `./src/test/js/**/*.js`
-** By default, it will output using a terminal reporter and a JUnit reporter and places the results of the latter in `./target/js-spec-junitresults-<datetime>.xml`
+  * This task will run Jasmine tests located in `./src/test/js/**/*.js`
+  * By default, it will output using a terminal reporter and a JUnit reporter and places the results of the latter in `./target/js-spec-junitresults-<datetime>.xml`
 * it
-** This task is similar to spec, but it runs integration tests in `./src/it/js/**/*.js`
+  * This task is similar to spec, but it runs integration tests in `./src/it/js/**/*.js`
 * clean
-** This task removes any processed javascript/test/less files.
+  * This task removes any processed javascript/test/less files.
 * less
-** This task will process any less files in `.src/main/less/**/*.less` and output the processed css to `./target/classes/static/css/build/styles.css`
+  * This task will process any less files in `.src/main/less/**/*.less` and output the processed css to `./target/classes/static/css/build/styles.css`
