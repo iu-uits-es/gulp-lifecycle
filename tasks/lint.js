@@ -30,4 +30,4 @@ for (var i = 0; i < types.length; i++) {
 	createLintTask('lint-' + type, src);
 }
 
-gulp.task('lint', ['lint-src', 'lint-spec', 'lint-it']);
+gulp.task('lint', ['lint-scripts', 'lint-spec', 'lint-it']);
