@@ -1,6 +1,6 @@
 {
   "name": "gulp-lifecycle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This provides Gulp tasks which will be used in a Maven-esque lifecycle mapping for JavaScript files",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,9 @@
     "lifecycle"
   ],
   "author": "ESI Middleware Team <bl-uits-esi-sit@exchange.iu.edu>",
+  "publishConfig": {
+    "registry": "https://apps-test.iu.edu/nxs-stg/content/repositories/IUInternal-NPM/"
+  },
   "dependencies": {
     "babelify": "^5.0.3",
     "browserify": "^7.0.0",
