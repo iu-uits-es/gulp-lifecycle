@@ -13,8 +13,14 @@ gulp.task('nodeDeps', function() {
 					wanted = row[3],
 					latest = row[4],
 					location = row[5];
-				report.addFailure(pkg, 'Current: ' + current + ', Wanted: ' + wanted + 
-					', Latest: ' + latest + ', Location: ' + location);
+				if (current !== wanted) {
+					report.addFailure(pkg, 'Current: ' + current + ', Wanted: ' + wanted + 
+						', Latest: ' + latest + ', Location: ' + location);					
+				} else {
+					report.addPassing(pkg, 'Current: ' + current + ', Wanted: ' + wanted + 
+						', Latest: ' + latest + ', Location: ' + location);					
+				}
+
 			});
 			report.write();
 		});	
