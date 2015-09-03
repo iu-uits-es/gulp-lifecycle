@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 gulp.task('scripts', ['clean-scripts'], function() {
     var src = utils.findSourceDirectories(config.entryPoint, config.srcdir);
 
-    return gulp.src(src)
+    return gulp.src(src, { base: process.cwd() })
         .pipe(utils.browserify)
         .pipe(utils.moduleAwareRename(config.srcdir, config.outputName))
         .pipe($.sourcemaps.init({loadMaps: true})) // loads map from browserify file;
