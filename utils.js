@@ -41,7 +41,6 @@ module.exports = {
         	var parts = outputName.split('.');
         	filePath.basename = parts[0];
         	filePath.extname = '.' + parts[1];
-
-    	}, { base: process.cwd() });
+    	});
 	}
 };

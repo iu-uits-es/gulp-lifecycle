@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 gulp.task('spec', ['clean-test'], function() {
     var src = utils.findSourceDirectories(config.entryPoint, config.srcdir);
 
-    return gulp.src(src)
+    return gulp.src(src, { base: process.cwd() })
         .pipe(utils.browserify)
         .pipe(utils.moduleAwareRename(config.srcdir, config.outputName))
         .pipe(gulp.dest(config.dest))
