@@ -1,7 +1,7 @@
-var gulp = require('gulp'),
-    $ = require('gulp-load-plugins')(),
+var $ = require('gulp-load-plugins')(),
     utils = require('../utils'),
     config = global.config;
+
 
 // Send a notification when JSRC fails,
 // so that you know your changes didn't build
@@ -10,7 +10,7 @@ function jscsNotify(file) {
     return file.jscs.success ? false : 'JSRC failed';
 }
 
-function createLintTask(taskName, files) {
+function createLintTask(gulp, taskName, files) {
     gulp.task(taskName, function() {
         return gulp.src(files)
             .pipe($.plumber())
@@ -22,15 +22,16 @@ function createLintTask(taskName, files) {
     });
 }
 
-
-var types = ['scripts', 'spec', 'it'];
-var all = [];
-for (var i = 0; i < types.length; i++) {
-	var type = types[i],
-		src = utils.findSourceDirectories(config[type].entryPoint, config[type].srcdir)
-		taskname = 'lint-'+type;
-	createLintTask(taskname, src);
-	all.push(taskname)
+module.exports = function(gulp) {
+    var types = ['scripts', 'spec', 'it'];
+    var all = [];
+    for (var i = 0; i < types.length; i++) {
+    	var type = types[i],
+    		src = utils.findSourceDirectories(config[type].entryPoint, config[type].srcdir)
+    		taskname = 'lint-'+type;
+    	createLintTask(gulp, taskname, src);
+    	all.push(taskname)
+    }
+    //// lint all
+    gulp.task('lint', all);
 }
-//// lint all
-gulp.task('lint', all);
