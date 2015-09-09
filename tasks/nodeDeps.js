@@ -20,8 +20,17 @@ module.exports = function(gulp) {
 						report.addPassing(pkg, 'Current: ' + current + ', Wanted: ' + wanted +
 							', Latest: ' + latest + ', Location: ' + location);
 					}
+					// Check current against latest to make sure we're not a major version behind.  Add a skip if necessary.
+					if(latest === 'git') {
+						report.addSkipped(pkg, 'Package ' + pkg + ' is a git dependency, consider publishing and switch to a published version.');
+					} else if(current !== latest) {
+						report.addSkipped(pkg, 'Package ' + pkg + ' has a new major version available, consider updating.  Current: ' + current + ', Latest: ' + latest);
+					}
 
 				});
+				if(report.getReport().stats.tests === 0) {
+					report.addPassing('all-modules', 'All modules are up-to-date');
+				}
 				report.write();
 			});
 		});
