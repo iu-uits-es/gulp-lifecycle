@@ -16,7 +16,7 @@
   ],
   "author": "ESI Middleware Team <bl-uits-esi-sit@exchange.iu.edu>",
   "publishConfig": {
-    "registry": "https://apps-test.iu.edu/nxs-stg/content/repositories/IUInternal-NPM/"
+    "registry": "https://npmjs.iu.edu/repository"
   },
   "dependencies": {
     "babelify": "^5.0.3",
