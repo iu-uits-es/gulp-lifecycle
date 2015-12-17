@@ -1,16 +1,35 @@
 var browserify = require('browserify'),
-    transform = require('vinyl-transform'),
-    babelify = require('babelify'),
+	source = require('vinyl-source-stream'),
+	gutil = require('gulp-util'),
+	buffer = require('vinyl-buffer'),
+	babelify = require('babelify'),
 	fs = require('fs'),
+	through = require('through'),
 	path = require('path'),
 	rename = require('gulp-rename');
 
 module.exports = {
-	browserify: transform(function(filename) {
-	        return browserify(filename)
-		               .transform(babelify.configure({ignore: 'node_modules'}))
-		        	   .bundle();
-	}),
+	browserify: through.obj(function (chunk, enc, cb) {
+			console.log('chunk', chunk.path); // this should log now
+			cb(null, chunk);
+		})
+
+
+		//var stream =  browserify(filename)
+		//	.bundle()
+		//	.on('error', function(e) {
+		//		gutil.log(e);
+		//	})
+		//	.pipe(source('bundle.js'));
+		//console.log(stream);
+		//return stream;
+
+		//var browserified =  browserify(filename)
+		//	//.transform(babelify.configure({ignore: 'node_modules'}))
+		//	.transform("babelify", {presets: ["es2015", "react"]});
+		//return  browserified.bundle().pipe(source('tmp.js'))
+		//	.pipe(buffer());
+	,
 	findSourceDirectories: function(entryPoint, sourceRoot) {
 		var src = path.join(sourceRoot, entryPoint);
 		if(!fs.existsSync(src)) {

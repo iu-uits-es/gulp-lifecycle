@@ -1,4 +1,7 @@
 var gulp = require('gulp'),
+  browserify = require('browserify'),
+  source = require('vinyl-source-stream'),
+  babelify = require('babelify'),
     jasmine = require('gulp-jasmine-phantom'),
     utils = require('../utils'),
     config = global.config.spec;
