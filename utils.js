@@ -4,23 +4,35 @@ var browserify = require('browserify'),
 	buffer = require('vinyl-buffer'),
 	babelify = require('babelify'),
 	fs = require('fs'),
-	through = require('through'),
+	through2 = require('through2'),
 	path = require('path'),
 	rename = require('gulp-rename');
 
+
 module.exports = {
-	browserify: through.obj(function (chunk, enc, cb) {
-			console.log('chunk', chunk.path); // this should log now
-			cb(null, chunk);
+	browserify: through2.obj(function (file, enc, cb) {
+		  console.log('file', file.path);
+		  browserify(file.path)
+				.transform(babelify, { presets: ["react", "es2015",  'stage-0'] })
+				.bundle(function(err, res){
+					console.log('bundling', cb, err);
+					// assumes file.contents is a Buffer
+					file.contents = res;
+					cb(null, file);
+			});
+
+
+
+			//.on('error', function(e) {
+			//	gutil.log(e);
+			//})
+			//.pipe(source('bundle.js'));
+			//console.log('chunk', chunk.path); // this should log now
+			//cb(null, chunk);
 		})
 
 
-		//var stream =  browserify(filename)
-		//	.bundle()
-		//	.on('error', function(e) {
-		//		gutil.log(e);
-		//	})
-		//	.pipe(source('bundle.js'));
+
 		//console.log(stream);
 		//return stream;
 
