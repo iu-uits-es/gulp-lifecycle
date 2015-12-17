@@ -8,7 +8,7 @@ var browserify = require('browserify'),
 module.exports = {
 	browserify: transform(function(filename) {
 	        return browserify(filename)
-		               .transform(babelify.configure({ignore: 'node_modules'}))
+		               .transform(babelify.configure({ presets: ['es2015', 'react', 'stage-0'] }))
 		        	   .bundle();
 	}),
 	findSourceDirectories: function(entryPoint, sourceRoot) {
