@@ -19,7 +19,7 @@
     "registry": "https://apps-test.iu.edu/nxs-stg/content/repositories/IUInternal-NPM/"
   },
   "dependencies": {
-    "babelify": "^5.0.3",
+    "babelify": "^7.2.0",
     "browserify": "^7.0.0",
     "csswring": "^3.0.5",
     "deepmerge": "^0.2.10",
