@@ -1,6 +1,12 @@
-var jasmine = require('iu-gulp-jasmine-phantom'),
-    utils = require('../utils'),
-    config = global.config.it;
+var gulp = require('gulp'),
+  jasmine = require('iu-gulp-jasmine-phantom'),
+  browserify = require('browserify'),
+  babelify = require('babelify'),
+  es2015 = require('babel-preset-es2015'),
+  react = require('babel-preset-react'),
+  through2 = require('through2'),
+  utils = require('../utils'),
+  config = global.config.spec;
 
 module.exports = function(gulp) {
     gulp.task('it', ['clean-test'], function() {
@@ -19,4 +25,4 @@ module.exports = function(gulp) {
             .pipe(gulp.dest(config.dest))
             .pipe(jasmine(config.jasmineConfig));
     });
-}
+};
