@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-    jasmine = require('gulp-jasmine-phantom'),
+    jasmine = require('iu-gulp-jasmine-phantom'),
     utils = require('../utils'),
     config = global.config.spec;
 

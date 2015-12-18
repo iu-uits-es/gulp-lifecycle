@@ -1,4 +1,4 @@
-var jasmine = require('gulp-jasmine-phantom'),
+var jasmine = require('iu-gulp-jasmine-phantom'),
     utils = require('../utils'),
     config = global.config.it;
 

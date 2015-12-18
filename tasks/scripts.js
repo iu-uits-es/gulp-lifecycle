@@ -3,7 +3,7 @@ var $ = require('gulp-load-plugins')(),
     config = global.config.scripts;
 
 module.exports = function(gulp) {
-    gulp.task('scripts', ['clean-scripts'], function() {
+    gulp.task('scripts', [], function() {
         var src = utils.findSourceDirectories(config.entryPoint, config.srcdir);
 
         return gulp.src(src, { base: process.cwd() })
