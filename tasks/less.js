@@ -4,7 +4,7 @@ var csswring = require('csswring'),
     config = global.config.less;
 
 module.exports = function(gulp) {
-	gulp.task('less', ['clean-less'], function() {
+	gulp.task('less', [], function() {
 	    var src = utils.findSourceDirectories(config.entryPoint, config.srcdir);
 	    return gulp.src(src, { base: process.cwd() })
 	        .pipe($.less())
