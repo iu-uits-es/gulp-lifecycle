@@ -1,6 +1,6 @@
 {
   "name": "gulp-lifecycle",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "This provides Gulp tasks which will be used in a Maven-esque lifecycle mapping for JavaScript files",
   "main": "index.js",
   "scripts": {

@@ -19,9 +19,13 @@ module.exports = function(gulp) {
             .pipe(through2.obj(function(file, enc, next) {
                 browserify(file.path)
                     .transform(babelify.configure({ignore: 'node_modules', presets: [es2015, react, stage0]}))
-                  .bundle(function (err, result) {
-                      file.contents = result;
-                      next(null, file);
+                    .bundle(function (err, result) {
+                      if(err) {
+                          console.error(err.message);
+                      } else {
+                          file.contents = result;
+                          next(null, file);
+                      }
                   })
             }))
             .pipe(utils.moduleAwareRename(config.srcdir, config.outputName))
