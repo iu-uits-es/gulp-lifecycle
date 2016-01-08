@@ -20,6 +20,8 @@ module.exports = function(gulp) {
                   .bundle(function (err, result) {
                       if(err) {
                           console.error(err.message);
+                          file.contents = null;
+                          next(null, file);
                       } else {
                           file.contents = result;
                           next(null, file);
