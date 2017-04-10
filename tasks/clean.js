@@ -3,14 +3,17 @@ var del = require('del'),
 
 module.exports = function(gulp) {
     gulp.task('clean-scripts', function(cb) {
-        del(config.scripts, cb);
+        del.sync(config.scripts);
+        cb();
     });
 
     gulp.task('clean-test', function(cb) {
-        del(config.spec, cb);
+        del.sync(config.spec);
+        cb();
     });
 
     gulp.task('clean-less', function(cb) {
-        del(config.less, cb);
+        del.sync(config.less);
+        cb();
     });
 }
