@@ -27,7 +27,7 @@ module.exports = function(gulp) {
     var all = [];
     for (var i = 0; i < types.length; i++) {
     	var type = types[i],
-    		src = utils.findSourceDirectories(config[type].entryPoint, config[type].srcdir)
+    		src = config[type].srcdir + '/**/*.js',
     		taskname = 'lint-'+type;
     	createLintTask(gulp, taskname, src);
     	all.push(taskname)

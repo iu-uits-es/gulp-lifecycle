@@ -1,48 +1,24 @@
 var browserify = require('browserify'),
-	source = require('vinyl-source-stream'),
-	gutil = require('gulp-util'),
-	buffer = require('vinyl-buffer'),
-	babelify = require('babelify'),
-	fs = require('fs'),
-	through2 = require('through2'),
-	path = require('path'),
-	rename = require('gulp-rename');
+    transform = require('vinyl-transform'),
+    babelify = require('babelify'),
+    fs = require('fs'),
+    path = require('path'),
+    rename = require('gulp-rename'),
+    es2015 = require('babel-preset-es2015'),
+    react = require('babel-preset-react'),
+    through2 = require('through2');
 
 
 module.exports = {
-	browserify: through2.obj(function (file, enc, cb) {
-		  console.log('file', file.path);
-		  browserify(file.path)
-				.transform(babelify, { presets: ["react", "es2015",  'stage-0'] })
-				.bundle(function(err, res){
-					console.log('bundling', cb, err);
-					// assumes file.contents is a Buffer
-					file.contents = res;
-					cb(null, file);
-			});
-
-
-
-			//.on('error', function(e) {
-			//	gutil.log(e);
-			//})
-			//.pipe(source('bundle.js'));
-			//console.log('chunk', chunk.path); // this should log now
-			//cb(null, chunk);
+	browserify: through2.obj(function(file, enc, next) {
+		browserify(file.path)
+		    .transform(babelify.configure({ignore: 'node_modules', presets: [es2015, react]}))
+		.bundle(function (err, result) {
+		    file.contents = result;
+		    next(null, file);
 		})
-
-
-
-		//console.log(stream);
-		//return stream;
-
-		//var browserified =  browserify(filename)
-		//	//.transform(babelify.configure({ignore: 'node_modules'}))
-		//	.transform("babelify", {presets: ["es2015", "react"]});
-		//return  browserified.bundle().pipe(source('tmp.js'))
-		//	.pipe(buffer());
-	,
-	findSourceDirectories: function(entryPoint, sourceRoot) {
+	}),
+    findSourceDirectories: function(entryPoint, sourceRoot) {
 		var src = path.join(sourceRoot, entryPoint);
 		if(!fs.existsSync(src)) {
 		    if(fs.existsSync(sourceRoot)) {
