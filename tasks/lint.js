@@ -23,7 +23,7 @@ function createLintTask(gulp, taskName, files) {
 }
 
 module.exports = function(gulp) {
-    var types = ['scripts', 'spec', 'it'];
+    var types = ['scripts'];
     var all = [];
     for (var i = 0; i < types.length; i++) {
     	var type = types[i],
