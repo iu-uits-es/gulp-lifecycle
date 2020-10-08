@@ -20,7 +20,7 @@ module.exports = function(gulp) {
                       if(err) {
                           console.error(err.message);
                           file.contents = null;
-                          next(null, files);
+                          next(null, file);
                       } else {
                           file.contents = result;
                           next(null, file);
