@@ -12,7 +12,7 @@ var browserify = require('browserify'),
 module.exports = {
 	browserify: through2.obj(function(file, enc, next) {
 		browserify(file.path)
-		    .transform(babelify.configure({ignore: 'node_modules', presets: [es2015, react]}))
+		    .transform(babelify.configure({ignore: ['node_modules'], presets: [es2015, react]}))
 		.bundle(function (err, result) {
 		    file.contents = result;
 		    next(null, file);
